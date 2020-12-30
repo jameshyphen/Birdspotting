@@ -1,19 +1,37 @@
 package domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class BirdSpecie {
+	@Id
+	@GeneratedValue
+	public Integer id;
+
 	private String name;
 	
     private Integer yearOfDiscovery;
 	
     private String code;
-		
+
+
 	public BirdSpecie(String name, Integer yearOfDiscovery, String code) {
 		super();
 		this.name = name;
 		this.yearOfDiscovery = yearOfDiscovery;
 		this.code = code;
 	}
-	
+
+	public BirdSpecie(String name) {
+		this.name = name;
+	}
+
+	public BirdSpecie() {
+
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -42,6 +60,4 @@ public class BirdSpecie {
 	public String toString() {
 		return String.format("%s - %d (%s)", getName(), getYearOfDiscovery(), getCode());
 	}
-	
-	
 }
