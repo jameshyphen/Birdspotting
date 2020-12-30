@@ -12,14 +12,14 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <mapping class="domain.models.Session"/>
-        <mapping class="domain.models.User"/>
-        <mapping class="domain.models.Announcement"/>
-        <mapping class="domain.models.Feedback"/>
-        <mapping class="domain.models.RegisteredUser"/>
-        <mapping class="domain.models.AuthUser"/>
-        <mapping class="domain.models.SessionLeader"/>
-        <mapping class="domain.models.SessionCalendar"/>
+<!--        <mapping class="domain.models.Session"/>-->
+<!--        <mapping class="domain.models.User"/>-->
+<!--        <mapping class="domain.models.Announcement"/>-->
+<!--        <mapping class="domain.models.Feedback"/>-->
+<!--        <mapping class="domain.models.RegisteredUser"/>-->
+<!--        <mapping class="domain.models.AuthUser"/>-->
+<!--        <mapping class="domain.models.SessionLeader"/>-->
+<!--        <mapping class="domain.models.SessionCalendar"/>-->
 <!--        DOESNT WORK ^^-->
     </session-factory>
 </hibernate-configuration>

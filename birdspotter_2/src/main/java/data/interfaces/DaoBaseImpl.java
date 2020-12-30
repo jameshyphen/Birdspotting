@@ -1,9 +1,6 @@
-package data.dao.interfaces;
+package data.interfaces;
 
-import domain.models.*;
-import io.reactivex.Observable;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subjects.Subject;
+import domain.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,7 +16,6 @@ public abstract class DaoBaseImpl<T, Id extends Serializable> implements DaoInte
     private Session currentHibernateSession;
     private Transaction currentHibernateTransaction;
 
-    private final Subject<Boolean> changeListener = PublishSubject.create();
 
 
     public Session getCurrentSession() {
@@ -55,20 +51,19 @@ public abstract class DaoBaseImpl<T, Id extends Serializable> implements DaoInte
 
     public void closeCurrentSessionWithTransaction() {
         currentHibernateTransaction.commit();
-        changeListener.onNext(true);
         currentHibernateSession.close();
     }
 
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(domain.models.Session.class);
-        configuration.addAnnotatedClass(User.class);
-        configuration.addAnnotatedClass(Announcement.class);
-        configuration.addAnnotatedClass(Feedback.class);
-        configuration.addAnnotatedClass(RegisteredUser.class);
-        configuration.addAnnotatedClass(SessionCalendar.class);
-        configuration.addAnnotatedClass(SessionLeader.class);
-        configuration.addAnnotatedClass(AuthUser.class);
+//        configuration.addAnnotatedClass(domain.models.Session.class);
+//        configuration.addAnnotatedClass(User.class);
+//        configuration.addAnnotatedClass(Announcement.class);
+//        configuration.addAnnotatedClass(Feedback.class);
+//        configuration.addAnnotatedClass(RegisteredUser.class);
+//        configuration.addAnnotatedClass(SessionCalendar.class);
+//        configuration.addAnnotatedClass(SessionLeader.class);
+//        configuration.addAnnotatedClass(AuthUser.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
@@ -80,9 +75,6 @@ public abstract class DaoBaseImpl<T, Id extends Serializable> implements DaoInte
      *
      * @return Observable just used to signal a change. No actual data will be pushed.
      */
-    public final Observable<Boolean> getChangeListener() {
-        return this.changeListener;
-    }
 
     @Override
     public abstract void persist(T entity);
